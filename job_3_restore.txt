@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+cd /var/lib/jenkins/cicd-project
+
+echo "До восстановления:"
+ls -la
+
+git restore --source=HEAD -- file1.txt file2.txt
+
+echo "После восстановления"
+ls -la
+
+test -f file1.txt
+test -f file2.txt
+
+echo "Файлы успешно восстановлены"
