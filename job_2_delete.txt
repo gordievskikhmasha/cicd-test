@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+cd /var/lib/jenkins/cicd-project
+
+echo "До удаления:"
+ls -la
+
+test -f file1.txt
+test -f file2.txt
+
+rm file1.txt file2.txt
+
+echo "После удаления:"
+ls -la
+
+test ! -e file1.txt
+test ! -e file2.txt
+
+echo "Удаление файлов произошло успешно"
