@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+REPO_URL="https://github.com/gordievskikhmasha/cicd-test.git"
+BRANCH="main"
+WORKSPACE="/var/lib/jenkins/cicd-project"
+
+mkdir -p "$WORKSPACE"
+cd "$WORKSPACE"
+
+if [ -d ".git" ]; then
+    git fetch origin #получить информацию об изменениях
+    git checkout "$BRANCH" #переключить ветку
+    git reset --hard "origin/$BRANCH"
+else
+    git clone --branch "$BRANCH" "$REPO_URL" .
+fi
+
+echo "Установка произошла успешно"
+ls -la
